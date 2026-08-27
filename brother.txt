@@ -1,26 +1,20 @@
-# Brother iPrint&Scan Desktop.
+# Brother iPrint&Scan Desktop — confirmed by the user (8/27) to be a genuinely universal app,
+# despite the link only being reachable through one specific model's support page (Brother's site
+# hides the universal download inside per-model sections rather than a general download page).
 #
-# We have NOT confirmed a stable, direct installer-file URL for this app — the dev environment this
-# catalog was written from has brother.com/brother-usa.com blocked at the network level, so it could
-# not be checked by hand. Rather than guess a file URL that might be wrong (or break silently when
-# Brother changes it), this defaults to Page: it opens Brother's own support site and lets their
-# search/download flow do the rest.
+# Link found 8/27: a "downloadhowto.aspx" page for the MFC-J6930DW's support section. This dev
+# environment can't reach brother.com to verify what it actually returns (network egress proxy
+# blocks it), so this is unverified from here — first real test is whatever happens when the app's
+# Install button is actually clicked. ScanAppInstallService.InstallViaDownloadAsync has a guard for
+# the case where a Download URL turns out to return an HTML page instead of a real file (fails
+# clearly instead of saving/launching the wrong thing), so a bad link here should surface plainly
+# rather than silently misbehaving.
 #
-# If someone with a normal browser confirms a stable direct download link (e.g. from
-# https://support.brother.com or the iPrint&Scan Desktop page), switch this to:
-#   Mechanism=Download
-#   Url=<that file's URL>
-# No app update needed — just edit this file.
-#
-# Found 8/27: https://support.brother.com/g/b/downloadhowto.aspx?c=us&lang=en&prod=mfcj6930dw_us_eu_as&os=10068&dlid=dlf106359_000&flang=4&type3=10272
-# NOT wired in — "downloadhowto.aspx" plus "prod=mfcj6930dw_us_eu_as" in the query string means
-# this is a download-instructions page tied to one specific model (the MFC-J6930DW), not a generic
-# cross-model installer link. Wiring it in as the universal Download entry would send everyone
-# clicking Brother's Install button to instructions for that one printer, which is likely wrong for
-# anyone with a different model.
-Mechanism=Page
-Url=https://support.brother.com
+# If this URL ever goes stale or turns out wrong, revert to:
+#   Mechanism=Page
+#   Url=https://support.brother.com
+Mechanism=Download
+Url=https://support.brother.com/g/b/downloadhowto.aspx?c=us&lang=en&prod=mfcj6930dw_us_eu_as&os=10068&dlid=dlf106359_000&flang=4&type3=10272
 # Best-effort — if Brother's app is already installed (from a previous manual install, or bundled
-# with a driver package), this still lets the button correctly show "Open" instead of sending
-# someone to a page for software they already have.
+# with a driver package), this still lets the button correctly show "Open" instead of re-downloading.
 AppSearchName=Brother iPrint&Scan|iPrintScan

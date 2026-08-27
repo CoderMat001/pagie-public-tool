@@ -1,16 +1,18 @@
-# Epson's scan app (Epson Scan 2 / Epson ScanSmart) — same per-model download-page situation as
-# Epson's driver page (see DriverResolutionService's Epson walkthrough, written from a real
-# epson.com Download Center screenshot). Opens Epson's support search instead of guessing a
-# cross-model file URL.
+# Epson ScanSmart — confirmed by the user (8/27) to be a genuinely universal app (works across
+# Epson models), despite the URL being filed under one specific model's page — same "vendor hides
+# the universal download inside per-model sections" situation as Brother.
 #
-# Found 8/27: https://ftp.epson.com/drivers/ScanSmart_MFP_3720.exe — a real direct .exe (Epson's
-# own file host, real extension), but NOT wired in: "MFP_3720" ties it to the WF-3720 series
-# specifically, not a generic installer. Wiring it in as the universal Download entry would give
-# everyone clicking Epson's Install button a scan app built for that one printer family, which is
-# likely wrong for any other Epson model (this project's own earlier testing used an ET-2800, a
-# different series entirely). If a genuinely model-independent Epson scan installer turns up,
-# switch Mechanism to Download and Url to that instead.
-Mechanism=Page
-Url=https://epson.com/Support/Printers
+# Link found 8/27: ftp.epson.com's own direct file host, real .exe extension. This dev environment
+# can't reach ftp.epson.com to verify it (network egress proxy blocks it), so this is unverified
+# from here — first real test is whatever happens when the app's Install button is actually
+# clicked. ScanAppInstallService.InstallViaDownloadAsync has a guard for a Download URL that turns
+# out to return an HTML page instead of a real file, so a bad link should surface clearly rather
+# than silently misbehaving.
+#
+# If this URL ever goes stale or turns out wrong, revert to:
+#   Mechanism=Page
+#   Url=https://epson.com/Support/Printers
+Mechanism=Download
+Url=https://ftp.epson.com/drivers/ScanSmart_MFP_3720.exe
 # Best-effort — same bundled-with-driver reasoning as canon.txt.
 AppSearchName=Epson Scan|ScanSmart
