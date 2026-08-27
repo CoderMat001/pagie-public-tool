@@ -2,6 +2,14 @@
 # Epson's driver page (see DriverResolutionService's Epson walkthrough, written from a real
 # epson.com Download Center screenshot). Opens Epson's support search instead of guessing a
 # cross-model file URL.
+#
+# Found 8/27: https://ftp.epson.com/drivers/ScanSmart_MFP_3720.exe — a real direct .exe (Epson's
+# own file host, real extension), but NOT wired in: "MFP_3720" ties it to the WF-3720 series
+# specifically, not a generic installer. Wiring it in as the universal Download entry would give
+# everyone clicking Epson's Install button a scan app built for that one printer family, which is
+# likely wrong for any other Epson model (this project's own earlier testing used an ET-2800, a
+# different series entirely). If a genuinely model-independent Epson scan installer turns up,
+# switch Mechanism to Download and Url to that instead.
 Mechanism=Page
 Url=https://epson.com/Support/Printers
 # Best-effort — same bundled-with-driver reasoning as canon.txt.

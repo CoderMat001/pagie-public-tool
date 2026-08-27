@@ -11,6 +11,13 @@
 #   Mechanism=Download
 #   Url=<that file's URL>
 # No app update needed — just edit this file.
+#
+# Found 8/27: https://support.brother.com/g/b/downloadhowto.aspx?c=us&lang=en&prod=mfcj6930dw_us_eu_as&os=10068&dlid=dlf106359_000&flang=4&type3=10272
+# NOT wired in — "downloadhowto.aspx" plus "prod=mfcj6930dw_us_eu_as" in the query string means
+# this is a download-instructions page tied to one specific model (the MFC-J6930DW), not a generic
+# cross-model installer link. Wiring it in as the universal Download entry would send everyone
+# clicking Brother's Install button to instructions for that one printer, which is likely wrong for
+# anyone with a different model.
 Mechanism=Page
 Url=https://support.brother.com
 # Best-effort — if Brother's app is already installed (from a previous manual install, or bundled
