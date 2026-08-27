@@ -1,0 +1,8 @@
+# Epson's scan app (Epson Scan 2 / Epson ScanSmart) — same per-model download-page situation as
+# Epson's driver page (see DriverResolutionService's Epson walkthrough, written from a real
+# epson.com Download Center screenshot). Opens Epson's support search instead of guessing a
+# cross-model file URL.
+Mechanism=Page
+Url=https://epson.com/Support/Printers
+# Best-effort — same bundled-with-driver reasoning as canon.txt.
+AppSearchName=Epson Scan|ScanSmart

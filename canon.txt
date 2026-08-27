@@ -1,0 +1,8 @@
+# Canon's scan app (IJ Scan Utility / Canon PRINT) — no single stable cross-model download URL
+# found; Canon organizes downloads per exact model, same situation as Canon's entry in
+# DriverResolutionService. Opens Canon's support search instead of guessing a file URL.
+Mechanism=Page
+Url=https://www.usa.canon.com/support
+# Best-effort — Canon's scan utility is usually bundled with a driver package, so plenty of users
+# already have it. Lets the button show "Open" instead of sending them to a page unnecessarily.
+AppSearchName=IJ Scan Utility|Canon IJ Scan

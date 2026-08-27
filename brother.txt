@@ -1,0 +1,19 @@
+# Brother iPrint&Scan Desktop.
+#
+# We have NOT confirmed a stable, direct installer-file URL for this app — the dev environment this
+# catalog was written from has brother.com/brother-usa.com blocked at the network level, so it could
+# not be checked by hand. Rather than guess a file URL that might be wrong (or break silently when
+# Brother changes it), this defaults to Page: it opens Brother's own support site and lets their
+# search/download flow do the rest.
+#
+# If someone with a normal browser confirms a stable direct download link (e.g. from
+# https://support.brother.com or the iPrint&Scan Desktop page), switch this to:
+#   Mechanism=Download
+#   Url=<that file's URL>
+# No app update needed — just edit this file.
+Mechanism=Page
+Url=https://support.brother.com
+# Best-effort — if Brother's app is already installed (from a previous manual install, or bundled
+# with a driver package), this still lets the button correctly show "Open" instead of sending
+# someone to a page for software they already have.
+AppSearchName=Brother iPrint&Scan|iPrintScan
