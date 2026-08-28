@@ -3,7 +3,13 @@
 # vendor scan app isn't listed here yet.
 # Store-distributed, same reasoning as hp.txt. Store product ID confirmed real at
 # https://apps.microsoft.com/detail/9wzdncrfj3pv (checked 8/26/2026).
+#
+# NOTE (8/27): this file only holds install info now. The install-detection field that used to be
+# here (AppSearchName=Windows Scan) was WRONG — Windows Scan's real Start Menu display name is just
+# "Scan", not "Windows Scan", confirmed by the user from a real Get-StartApps dump. That's exactly
+# why install-detection moved into the app itself (ScanAppInstallService.InstallChecks, using the
+# confirmed exact AppId Microsoft.WindowsScan_8wekyb3d8bbwe!App) instead of staying a plain-text
+# field here with no compiler or review to catch a bad guess.
 Mechanism=Winget
 Id=9wzdncrfj3pv
 Source=msstore
-AppSearchName=Windows Scan

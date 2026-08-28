@@ -2,7 +2,11 @@
 # Distributed via the Microsoft Store; winget resolves it straight to Microsoft's own servers, so
 # there is no vendor installer file for us to fetch or host.
 # Store product ID confirmed real at https://apps.microsoft.com/detail/9wzdncrfhwlh (checked 8/26/2026).
+#
+# NOTE (8/27): this file only holds install info now. Whether HP Smart is already installed is
+# checked in the app itself (ScanAppInstallService.InstallChecks), not from a field here — see
+# that file's comment for why (a real bug: a wrong/overly-broad search term living in a plain-text
+# file had no compiler or review catching it).
 Mechanism=Winget
 Id=9WZDNCRFHWLH
 Source=msstore
-AppSearchName=HP Smart

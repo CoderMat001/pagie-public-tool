@@ -7,6 +7,8 @@
 # Mechanism to Page and Url to https://www.usa.canon.com/support.
 Mechanism=Download
 Url=https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDIwMDAwNjg2NTAz&cmp=ABR&lang=EN
-# Best-effort — Canon's scan utility is usually bundled with a driver package, so plenty of users
-# already have it. Lets the button show "Open" instead of re-downloading unnecessarily.
-AppSearchName=IJ Scan Utility|Canon IJ Scan
+#
+# NOTE (8/27): this file only holds install info now — whether Canon's app is already installed is
+# checked in the app itself (ScanAppInstallService.InstallChecks), not from a field here. See that
+# file's comment for why (a real bug found with Windows Scan: a wrong/guessed search term living in
+# a plain-text file had no compiler or review catching it).

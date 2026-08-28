@@ -14,5 +14,8 @@
 #   Url=https://epson.com/Support/Printers
 Mechanism=Download
 Url=https://ftp.epson.com/drivers/ScanSmart_MFP_3720.exe
-# Best-effort — same bundled-with-driver reasoning as canon.txt.
-AppSearchName=Epson Scan|ScanSmart
+#
+# NOTE (8/27): this file only holds install info now — whether Epson's app is already installed is
+# checked in the app itself (ScanAppInstallService.InstallChecks), not from a field here. See that
+# file's comment for why (a real bug found with Windows Scan: a wrong/guessed search term living in
+# a plain-text file had no compiler or review catching it).
