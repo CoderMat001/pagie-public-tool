@@ -1,14 +1,12 @@
-# Canon's scan app. Found 8/27 — Canon's own production download-redirect gateway
-# (pdisp01.c-wss.com), the same one Canon's own site's Download buttons use, so this should serve
-# the real installer file directly. Not independently verified from the dev environment this was
-# added from (that environment's network egress proxy blocks c-wss.com entirely) — first real test
-# is whatever happens when the app's Install button is actually clicked. If it turns out wrong
-# (opens the wrong app, or the id is tied to one specific model rather than being generic), revert
-# Mechanism to Page and Url to https://www.usa.canon.com/support.
-Mechanism=Download
-Url=https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDIwMDAwNjg2NTAz&cmp=ABR&lang=EN
+# Canon PRINT — Canon's current Microsoft Store app (previously "Canon Inkjet Smart Connect"),
+# handles printing/scanning and printer status. Switched here 9/6, per the user, from a Download
+# link (Canon's c-wss.com redirect gateway) that turned out not to work — the app itself doesn't
+# register a Start Menu entry, so it also couldn't be install-detected the way Get-StartApps
+# expects (see ScanAppInstallService.InstallChecks' Canon comment).
+# Store product ID confirmed real at https://apps.microsoft.com/detail/9pmk584kqvc2 (checked 9/6).
+Mechanism=Winget
+Id=9PMK584KQVC2
+Source=msstore
 #
-# NOTE (8/27): this file only holds install info now — whether Canon's app is already installed is
-# checked in the app itself (ScanAppInstallService.InstallChecks), not from a field here. See that
-# file's comment for why (a real bug found with Windows Scan: a wrong/guessed search term living in
-# a plain-text file had no compiler or review catching it).
+# This file only holds install info — whether Canon PRINT is already installed is checked in the
+# app itself (ScanAppInstallService.InstallChecks), not from a field here.
