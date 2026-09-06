@@ -1,21 +1,12 @@
-# Epson ScanSmart — confirmed by the user (8/27) to be a genuinely universal app (works across
-# Epson models), despite the URL being filed under one specific model's page — same "vendor hides
-# the universal download inside per-model sections" situation as Brother.
+# Epson Print and Scan — Epson's Microsoft Store app. Its own Store listing describes it as a
+# Windows-8-era app and says it doesn't support Windows 11, but the user actually installed and ran
+# it successfully (9/6) — the listing's compatibility claim turned out to be stale/overcautious, not
+# a real blocker. Switched to this from the old ftp.epson.com direct-download link, which failed to
+# open at all for the user.
+# Store product ID confirmed real at https://apps.microsoft.com/detail/9wzdncrfj4p8 (checked 9/6).
+Mechanism=Winget
+Id=9WZDNCRFJ4P8
+Source=msstore
 #
-# Link found 8/27: ftp.epson.com's own direct file host, real .exe extension. This dev environment
-# can't reach ftp.epson.com to verify it (network egress proxy blocks it), so this is unverified
-# from here — first real test is whatever happens when the app's Install button is actually
-# clicked. ScanAppInstallService.InstallViaDownloadAsync has a guard for a Download URL that turns
-# out to return an HTML page instead of a real file, so a bad link should surface clearly rather
-# than silently misbehaving.
-#
-# If this URL ever goes stale or turns out wrong, revert to:
-#   Mechanism=Page
-#   Url=https://epson.com/Support/Printers
-Mechanism=Download
-Url=https://ftp.epson.com/drivers/ScanSmart_MFP_3720.exe
-#
-# NOTE (8/27): this file only holds install info now — whether Epson's app is already installed is
-# checked in the app itself (ScanAppInstallService.InstallChecks), not from a field here. See that
-# file's comment for why (a real bug found with Windows Scan: a wrong/guessed search term living in
-# a plain-text file had no compiler or review catching it).
+# This file only holds install info — whether Epson Print and Scan is already installed is checked
+# in the app itself (ScanAppInstallService.InstallChecks), not from a field here.
