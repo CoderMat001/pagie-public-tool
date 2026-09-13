@@ -1,22 +1,16 @@
-# Brother iPrint&Scan Desktop — confirmed by the user (8/27) to be a genuinely universal app,
-# despite the link only being reachable through one specific model's support page (Brother's site
-# hides the universal download inside per-model sections rather than a general download page).
+# Brother iPrint&Scan Desktop — switched to Page (9/13, per the user) after real-hardware testing
+# found the auto-download-and-run mechanism was getting caught by antivirus. The other three
+# vendors' AV-adjacent problems (Canon, Epson) were solved by switching to a Microsoft Store app —
+# checked whether Brother has an equivalent, and it doesn't for this: there's a "Brother Print
+# Support App" on the Store, but it's print-only (no scan) and requires Windows 11 24H2+, so it's
+# not a real substitute for iPrint&Scan's scan-to-PC capability.
 #
-# Link found 8/27: a "downloadhowto.aspx" page for the MFC-J6930DW's support section. This dev
-# environment can't reach brother.com to verify what it actually returns (network egress proxy
-# blocks it), so this is unverified from here — first real test is whatever happens when the app's
-# Install button is actually clicked. ScanAppInstallService.InstallViaDownloadAsync has a guard for
-# the case where a Download URL turns out to return an HTML page instead of a real file (fails
-# clearly instead of saving/launching the wrong thing), so a bad link here should surface plainly
-# rather than silently misbehaving.
-#
-# If this URL ever goes stale or turns out wrong, revert to:
-#   Mechanism=Page
-#   Url=https://support.brother.com
-Mechanism=Download
+# Instead of our own script silently downloading a fresh .exe and immediately launching it (exactly
+# the "download-then-execute" pattern AV/EDR heuristics are tuned to flag), this now just opens the
+# same URL — confirmed correct and working (8/27, manually tested by the user) — in the user's own
+# browser, so download + run happens the normal, human-driven way a browser handles it.
+Mechanism=Page
 Url=https://support.brother.com/g/b/downloadhowto.aspx?c=us&lang=en&prod=mfcj6930dw_us_eu_as&os=10068&dlid=dlf106359_000&flang=4&type3=10272
 #
-# NOTE (8/27): this file only holds install info now — whether Brother's app is already installed
-# is checked in the app itself (ScanAppInstallService.InstallChecks), not from a field here. See
-# that file's comment for why (a real bug found with Windows Scan: a wrong/guessed search term
-# living in a plain-text file had no compiler or review catching it).
+# NOTE: this file only holds install info — whether Brother's app is already installed is checked
+# in the app itself (ScanAppInstallService.InstallChecks), not from a field here.
